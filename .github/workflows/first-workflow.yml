@@ -8,12 +8,18 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        
-      - name: Welcome Message
-        run: echo "Welcome to my first workflow!"
 
-      - name: List Files
-        run: ls 
+      - name: List and Read Files
+        run: |
+          echo "Welcome to my first workflow!"
+          ls -al
+          cat README.md
+      
+      - name: Display ASCII content
+        run: cowsay -f dragon "Run for cover, I am a dragon... RAWR!" >> dragon.txt
 
-      - name: Read file
-        run: cat README.md
+      # - name: List Files
+      #   run: ls 
+
+      # - name: Read file
+      #   run: cat README.md
