@@ -13,5 +13,7 @@ jobs:
         run: ls -al
 
       - name: Execute shell script to generate ASCII art
-        run: ./.github/workflows/ascii_script.sh
+        run: | 
+          chmod +x ./.github/workflows/ascii_script.sh
+          ./.github/workflows/ascii_script.sh
           
