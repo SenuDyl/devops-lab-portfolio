@@ -13,5 +13,5 @@ jobs:
         run: ls -al
 
       - name: Execute shell script to generate ASCII art
-        run: ./ascii_script.sh
+        run: ./.github/workflows/ascii_script.sh
           
