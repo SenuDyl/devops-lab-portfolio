@@ -1,0 +1,1 @@
+This repository includes the hands-on labs for DevOps, covering practical exercises.
