@@ -1,0 +1,34 @@
+name: Workflow Filters and Activities
+
+on:
+    workflow_dispatch: # manual trigger
+
+    # schedule: # cron schedule example, runs every hour
+    #   - cron: "0 * * * *"
+
+    push:
+        branches:
+            - main
+        # branches-ignore:
+        #     - 'feature/**'
+        #     - 'test/**'
+    
+    # To trigger the workflow all conditions defined by the activities must be met
+    pull_request:
+        types:
+            - opened
+            - closed
+        branches:
+            - main
+        paths-ignore:
+            - README.md
+
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Say Hello
+              run: echo "Hello! Workflow has been triggered."
