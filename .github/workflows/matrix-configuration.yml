@@ -5,9 +5,17 @@ on: push
 jobs:
   deploy:
     strategy:
+      fail-fast: false # This allows all matrix combinations to run even if one fails, so we can see results for all combinations
+      max-parallel: 2
       matrix:
         os: [ubuntu-latest, ubuntu-20.04, windows-latest]
         image: [hello-world, alpine]
+        exclude:
+          - os: windows-latest
+            image: alpine # Alpine doesn't have a Windows version, so we exclude this combination
+        include:
+          - os: ubuntu-20.04
+            image: amd64/alpine:latest # Use a specific Alpine image for Ubuntu 20.04 to ensure compatibility
 
     runs-on: ${{ matrix.os }}
 
