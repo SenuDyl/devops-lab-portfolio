@@ -1,0 +1,37 @@
+name: Matrix Docker Test
+
+on: push
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04, windows-latest]
+        image: [hello-world, alpine]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Show Docker Info
+        run: docker info
+
+      - name: Run Docker Image
+        run: docker run ${{ matrix.image }}
+
+# This creates a matrix of:
+# 3 OS options
+# 2 Docker images
+
+# So GitHub will run:
+
+# ubuntu-latest + hello-world
+# ubuntu-latest + alpine
+# ubuntu-20.04 + hello-world
+# ubuntu-20.04 + alpine
+# windows-latest + hello-world
+# windows-latest + alpine
+
+# All in parallel (unless concurrency limits apply).
